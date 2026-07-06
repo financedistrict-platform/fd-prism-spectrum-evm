@@ -64,9 +64,11 @@ describe("SpectrumSettlement", function () {
     [owner, admin, facilitator, client, recipient1, recipient2, recipient3, unauthorized] =
       await ethers.getSigners();
 
-    // Deploy SpectrumSettlement with owner as initial admin
+    // Deploy SpectrumSettlement with owner as initial admin.
+    // permit2 = ZeroAddress binds the canonical singleton; the EIP-3009 path never calls it,
+    // so this suite exercises the 3009 flow without a Permit2 dependency.
     const SpectrumSettlement = await ethers.getContractFactory("SpectrumSettlement");
-    settlement = await SpectrumSettlement.deploy(owner.address);
+    settlement = await SpectrumSettlement.deploy(owner.address, ethers.ZeroAddress);
     await settlement.waitForDeployment();
 
     // Deploy mock tokens

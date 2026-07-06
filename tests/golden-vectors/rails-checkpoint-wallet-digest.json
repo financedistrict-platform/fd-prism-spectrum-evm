@@ -1,0 +1,22 @@
+{
+  "note": "Phase 4.5 wallet digest golden vector \u2014 produced by production RecurringMandateDigestBuilder.",
+  "chainId": 31337,
+  "permit2Address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "settlementAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+  "fdusdAddress": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+  "cycleAmount": "10000000000000000000",
+  "cycles": 12,
+  "cap": "120000000000000000000",
+  "permitSingle": {
+    "details": {
+      "token": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      "amount": "120000000000000000000",
+      "expiration": "281474976710655",
+      "nonce": "0"
+    },
+    "spender": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+    "sigDeadline": "281474976710655"
+  },
+  "domainSeparator": "0x22ef7036f9adec784953e6918096d78a11acadb17c9af413d519c65d4052fddd",
+  "digest": "0x6732e8c155392517fa5fdac0896e1fa2550a92f0d80b9d92ebe29c8514e8bb9e"
+}

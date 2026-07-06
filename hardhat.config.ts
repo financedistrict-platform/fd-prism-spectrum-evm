@@ -81,6 +81,13 @@ const config: HardhatUserConfig = {
       chainId: 31337,
       accounts: getNetworkAccounts("localhost"),
     },
+    "eth-sepolia": {
+      url: getRpcUrl("eth-sepolia", "https://ethereum-sepolia-rpc.publicnode.com"),
+      accounts: getNetworkAccounts("testnet"),
+      chainId: 11155111,
+      gasPrice: "auto",
+      timeout: 120000,
+    },
     "base-sepolia": {
       url: getRpcUrl("base-sepolia", "https://sepolia.base.org"),
       accounts: getNetworkAccounts("testnet"),
@@ -133,8 +140,25 @@ const config: HardhatUserConfig = {
     },
   },
   etherscan: {
-    apiKey: process.env.BASESCAN_API_KEY || process.env.BSCSCAN_API_KEY || process.env.ARBISCAN_API_KEY || "",
+    // Per-network keys keep Etherscan/Basescan/Bscscan verification independent.
+    // Keys MUST match the `network` field of each customChains entry below exactly.
+    apiKey: {
+      "eth-sepolia": process.env.ETHERSCAN_API_KEY || "",
+      "base-sepolia": process.env.BASESCAN_API_KEY || "",
+      base: process.env.BASESCAN_API_KEY || "",
+      "bsc-testnet": process.env.BSCSCAN_API_KEY || "",
+      bsc: process.env.BSCSCAN_API_KEY || "",
+      "arbitrum-sepolia": process.env.ARBISCAN_API_KEY || "",
+    },
     customChains: [
+      {
+        network: "eth-sepolia",
+        chainId: 11155111,
+        urls: {
+          apiURL: "https://api-sepolia.etherscan.io/api",
+          browserURL: "https://sepolia.etherscan.io",
+        },
+      },
       {
         network: "base-sepolia",
         chainId: 84532,
